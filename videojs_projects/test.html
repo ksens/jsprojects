@@ -6,6 +6,9 @@
 </head>
 
 <body>
+<div style="text-align:center">
+  <button onclick="play()">Play</button>
+  <button onclick="pause()">Pause</button>
   <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
   poster="SampleVideo_1280x720_1mb.jpg">
     <source src="SampleVideo_1280x720_1mb.mp4" type='video/mp4'>
@@ -14,18 +17,31 @@
       <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
     </p>
   </video>
+</div>
 
   <script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
   <script type="text/javascript">
-    var player = videojs('my-video', { /* Options */ }, function() {
-      console.log('Good to go!');
+    videojs("my-video").ready(function(){
+      var myPlayer = this;
 
-      this.play(); // if you don't trust autoplay for some reason
-
-      // How about an event listener?
-      this.on('ended', function() {
-        console.log('awww...over so soon?');
-      });
+      // EXAMPLE: Start playing the video.
+      myPlayer.currentTime(3); // from http://docs.videojs.com/docs/guides/api.html
+      myPlayer.pause();
     });
+var myVideo = videojs("my-video");
+
+function pause() {
+  myVideo.pause();
+//    if (myVideo.paused) {
+//        myVideo.play();
+//        //myVideo.currentTime(10)
+//    } else {
+//        //myVideo.currentTime(10)
+//        myVideo.pause();
+//    }
+}
+function play() {
+  myVideo.play();
+}
   </script>
 </body>
