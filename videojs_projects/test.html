@@ -1,10 +1,13 @@
 <head>
-  <link href="file:///Users/kritisensharma/node_modules/video.js/dist/video-js.css" rel="stylesheet">
+  <link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
+
+  <!-- If you'd like to support IE8 -->
+  <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 </head>
 
 <body>
   <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
-  poster="SampleVideo_1280x720_1mb.jpg" data-setup="{}">
+  poster="SampleVideo_1280x720_1mb.jpg">
     <source src="SampleVideo_1280x720_1mb.mp4" type='video/mp4'>
     <p class="vjs-no-js">
       To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -12,5 +15,17 @@
     </p>
   </video>
 
-  <script src="file:///Users/kritisensharma/node_modules/video.js/dist/video.js"></script>
+  <script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
+  <script type="text/javascript">
+    var player = videojs('my-video', { /* Options */ }, function() {
+      console.log('Good to go!');
+
+      this.play(); // if you don't trust autoplay for some reason
+
+      // How about an event listener?
+      this.on('ended', function() {
+        console.log('awww...over so soon?');
+      });
+    });
+  </script>
 </body>
